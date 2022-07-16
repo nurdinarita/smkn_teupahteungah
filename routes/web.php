@@ -35,11 +35,12 @@ Route::get('/berita/{slug}', [PagesController::class, 'beritaSingle']);
 
 Auth::routes();
 
-Route::get('/home', [DashboardController::class, 'index']);
-Route::resource('/admin/profil', ProfilController::class);
-Route::resource('/admin/visi-misi', VisiMisiController::class);
-Route::resource('/admin/berita', BeritaController::class);
-Route::resource('/admin/galeri', GaleriController::class);
-Route::resource('/admin/struktur-organisasi', StrukturController::class);
-Route::resource('/admin/slider', SliderController::class);
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', [DashboardController::class, 'index']);
+    Route::resource('/admin/profil', ProfilController::class);
+    Route::resource('/admin/visi-misi', VisiMisiController::class);
+    Route::resource('/admin/berita', BeritaController::class);
+    Route::resource('/admin/galeri', GaleriController::class);
+    Route::resource('/admin/struktur-organisasi', StrukturController::class);
+    Route::resource('/admin/slider', SliderController::class);
+});
