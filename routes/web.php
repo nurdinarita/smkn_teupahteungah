@@ -22,10 +22,6 @@ use \Cviebrock\EloquentSluggable\Services\SlugService;
 |
 */
 
-Route::get('checkSlug', function () {
-    $slug = SlugService::createSlug(App\Models\Berita::class, 'slug', request('judul'));
-    return response()->json(['slug' => $slug]);
-});
 
 Route::get('/', [PagesController::class, 'index']);
 Route::get('/profil', [PagesController::class, 'profil']);
@@ -36,6 +32,10 @@ Route::get('/berita/{slug}', [PagesController::class, 'beritaSingle']);
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('checkSlug', function () {
+        $slug = SlugService::createSlug(App\Models\Berita::class, 'slug', request('judul'));
+        return response()->json(['slug' => $slug]);
+    });
     Route::get('/home', [DashboardController::class, 'index']);
     Route::resource('/admin/profil', ProfilController::class);
     Route::resource('/admin/visi-misi', VisiMisiController::class);
