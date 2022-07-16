@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ProfilController;
 use App\Http\Controllers\Admin\VisiMisiController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\GaleriController;
+use App\Http\Controllers\Admin\StrukturController;
+use App\Http\Controllers\Admin\SliderController;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 /*
@@ -38,4 +40,6 @@ Route::resource('/admin/profil', ProfilController::class);
 Route::resource('/admin/visi-misi', VisiMisiController::class);
 Route::resource('/admin/berita', BeritaController::class);
 Route::resource('/admin/galeri', GaleriController::class);
+Route::resource('/admin/struktur-organisasi', StrukturController::class);
+Route::resource('/admin/slider', SliderController::class);
 

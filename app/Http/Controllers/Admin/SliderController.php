@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Galeri;
+use App\Models\Slider;
 use Illuminate\Support\Facades\Storage;
 
-class GaleriController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('admin.galeri.index')->with([
-            'title' => 'Galeri Sekolah',
-            'galeri' => Galeri::latest()->get()
+        return view('admin.slider.index')->with([
+            'title' => 'Gambar Slider',
+            'slider' => Slider::latest()->get()
         ]);
     }
 
@@ -29,8 +29,8 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('admin.galeri.form')->with([
-            'title' => 'Tambah Galeri Sekolah',
+        return view('admin.slider.form')->with([
+            'title' => 'Tambah Gambar Slider'
         ]);
     }
 
@@ -43,13 +43,11 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul' => 'required',
             'gambar' => 'required|image',
-            'deskripsi' => 'required'
         ]);
-        $validatedData['gambar'] = $request->file('gambar')->store('gambar-galeri');
-        Galeri::create($validatedData);
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil ditambahkan');
+        $validatedData['gambar'] = $request->file('gambar')->store('gambar-slider');
+        Slider::create($validatedData);
+        return redirect('admin/slider')->with('status', 'Slider berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +69,9 @@ class GaleriController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.galeri.form')->with([
-            'title' => 'Tambah Galeri Sekolah',
-            'galeri' => Galeri::find($id)
+        return view('admin.slider.form')->with([
+            'title' => 'Tambah Gambar Slider',
+            'slider' => Slider::find($id)
         ]);
     }
 
@@ -86,22 +84,18 @@ class GaleriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $galeri = Galeri::find($id);
+        $slider = Slider::find($id);
         $rules = [
-            'judul' => 'required',
             'gambar' => 'image|max:2000',
-            'deskripsi' => 'required'
         ];
-
         $validatedData = $request->validate($rules);
-
         if(request()->file('gambar')){
-            Storage::disk('public')->delete('gambar-galeri/'.$galeri->gambar);
-            $validatedData['gambar'] = $request->file('gambar')->store('gambar-galeri');
+            Storage::disk('public')->delete('gambar-slider/'.$slider->gambar);
+            $validatedData['gambar'] = $request->file('gambar')->store('gambar-slider');
         }
 
-        $galeri->update($validatedData);
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil diupdate');
+        $slider->update($validatedData);
+        return redirect('admin/slider')->with('status', 'Slider berhasil diupdate');
     }
 
     /**
@@ -112,10 +106,10 @@ class GaleriController extends Controller
      */
     public function destroy($id)
     {
-        $galeri = Galeri::find($id);
-        Storage::disk('public')->delete('gambar-galeri/'.$galeri->gambar);
-        $galeri->delete();
+        $slider = Slider::find($id);
+        Storage::disk('public')->delete('gambar-slider/'.$slider->gambar);
+        $slider->delete();
 
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil dihapus');
+        return redirect('admin/slider')->with('status', 'Berita berhasil dihapus');
     }
 }

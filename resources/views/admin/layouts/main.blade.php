@@ -31,14 +31,11 @@
   <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  <!-- Toast Alert -->
+  <link rel="stylesheet" href="{{ asset('plugins/toastr/toastr.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -102,7 +99,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/struktur-organisasi') }}" class="nav-link">
+            <a href="{{ url('admin/struktur-organisasi') }}" class="nav-link {{ Request::is('admin/struktur-organisasi') || $title == 'Tambah Struktur Organisasi' || $title == 'Edit Struktur Organisasi' || $title == 'Detail Struktur Organisasi' ? 'active' : '' }}">
                 <i class="nav-icon fas fa-sitemap"></i>
               <p>
                 Struktur Organisasi
@@ -112,7 +109,7 @@
 
           <li class="nav-header">Berita Dan Galeri</li>
           <li class="nav-item">
-            <a href="{{ url('admin/berita') }}" class="nav-link {{ Request::is('admin/berita') || $title === 'Edit Berita Sekolah' || $title === 'Tambah Berita Sekolah' ? 'active' : '' }}">
+            <a href="{{ url('admin/berita') }}" class="nav-link {{ Request::is('admin/berita') || $title === 'Edit Berita Sekolah' || $title === 'Tambah Berita Sekolah' || $title === 'Detail Berita' ? 'active' : '' }}">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
                 Berita Sekolah
@@ -124,6 +121,17 @@
               <i class="nav-icon far fa-image"></i>
               <p>
                 Gallery
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-header">Advance</li>
+          <li class="nav-item">
+            <a href="{{ url('admin/slider') }}" class="nav-link {{ Request::is('admin/slider') || $title === 'Edit Gambar Slider' || $title === 'Tambah Gambar Slider' ? 'active' : '' }}">
+              {{-- <i class="nav-icon far fa-calendar-alt"></i> --}}
+              <i class="nav-icon fas fa-photo-video"></i>
+              <p>
+                Gambar Slider
               </p>
             </a>
           </li>
@@ -177,6 +185,8 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+
 
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
@@ -280,6 +290,15 @@
     })
 </script>
 
+{{-- Alert --}}
+<script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+
+@if (session('status'))
+<script>
+  toastr.success('{{ session('status') }}')
+</script>
+@endif
+      
 @yield('script-hapus')
 @yield('slug')
 </body>

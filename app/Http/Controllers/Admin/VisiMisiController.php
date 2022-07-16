@@ -77,7 +77,7 @@ class VisiMisiController extends Controller
     public function update(Request $request, $id)
     {
         VisiMisi::find($id)->update(request()->all());
-        return redirect('admin/visi-misi');
+        return redirect('admin/visi-misi')->with('status', 'Visi Dan Misi berhasil diupdate');
     }
 
     /**

@@ -51,7 +51,7 @@ class BeritaController extends Controller
         
         $validatedData['gambar'] = $request->file('gambar')->store('gambar-berita');
         Berita::create($validatedData);
-        return redirect('admin/berita');
+        return redirect('admin/berita')->with('status', 'Berita berhasil ditambahkan');
     }
 
     /**
@@ -62,7 +62,11 @@ class BeritaController extends Controller
      */
     public function show($slug)
     {
-        //
+        // return Berita::where('slug', $slug)->first();
+        return view('admin.berita.show')->with([
+            'title' => 'Detail Berita',
+            'berita' => Berita::where('slug', $slug)->first()
+        ]);
     }
 
     /**
@@ -88,7 +92,26 @@ class BeritaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $berita = Berita::all()->where('id', $id)->first();
+        $rules = [
+            'judul' => 'required',
+            'gambar' => 'image|max:2000',
+            'body' => 'required'
+        ];
+
+        if($request->slug != $berita->slug){
+            $rules['slug'] = 'required|unique:berita'; 
+        }
+
+        $validatedData = $request->validate($rules);
+
+        if(request()->file('gambar')){
+            Storage::disk('public')->delete($berita->gambar);
+            $validatedData['gambar'] = $request->file('gambar')->store('gambar-berita');
+        }
+
+        Berita::where('id', $id)->update($validatedData);
+        return redirect('admin/berita')->with('status', 'Berita berhasil diupdate');
     }
 
     /**
@@ -102,6 +125,6 @@ class BeritaController extends Controller
         $data = Berita::find($id);
         Storage::delete($data->gambar);
         Berita::destroy($id);
-        return redirect('admin/berita');
+        return redirect('admin/berita')->with('status', 'Berita berhasil dihapus');
     }
 }

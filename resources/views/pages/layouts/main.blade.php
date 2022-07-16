@@ -25,13 +25,13 @@
           <img src="{{ asset('assets/img/logo.png') }}" style="width:80px;">
         </div>
         <div class="col-md-4 p-3">
-          <h2>SMKN TEUPAH TEUNGAH</h2>
+          <h2>SMKN TEUPAH TENGAH</h2>
           <p class="text-muted">TENGKU DIUJUNG KM. 11 NO. 56 SINABANG - LASIKIN, KEC. TEUPAH TENGAH</p>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-4 p-3">
-          <p class="mt-4"><i class="fa-solid fa-phone"></i> +62 852 7505 4619</p>
-          <p><i class="fa-solid fa-envelope"></i> smknteupahteungah@gmail.com</p>
+          <p class="mt-4"><i class="fa-solid fa-phone"></i> +62 812 3224 4035</p>
+          <p><i class="fa-solid fa-envelope"></i> smkn1teupahtengah2018@gmail.com</p>
         </div>
       </div>
     </div>

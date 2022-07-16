@@ -6,7 +6,7 @@
       <div class="card card-outline card-info">
         <div class="card-header">
           <h3 class="card-title">
-            Tambah Berita Sekolah
+            {{ !isset($berita) ? 'Tambah Berita Sekolah' : 'Edit Berita Sekolah' }}
           </h3>
         </div>
         <!-- /.card-header -->

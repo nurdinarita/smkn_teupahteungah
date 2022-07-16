@@ -77,7 +77,7 @@ class ProfilController extends Controller
     public function update(Request $request, $id)
     {
         Profil::find($id)->update(request()->all());
-        return redirect('admin/profil');
+        return redirect('admin/profil')->with('status', 'Profil berhasil diupdate');
     }
 
     /**

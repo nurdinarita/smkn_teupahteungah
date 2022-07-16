@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Galeri;
+use App\Models\Struktur;
 use Illuminate\Support\Facades\Storage;
 
-class GaleriController extends Controller
+class StrukturController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class GaleriController extends Controller
      */
     public function index()
     {
-        return view('admin.galeri.index')->with([
-            'title' => 'Galeri Sekolah',
-            'galeri' => Galeri::latest()->get()
+        return view('admin.struktur.index')->with([
+            'title' => 'Struktur Organisasi',
+            'struktur' => Struktur::latest()->get()
         ]);
     }
 
@@ -29,8 +29,8 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('admin.galeri.form')->with([
-            'title' => 'Tambah Galeri Sekolah',
+        return view('admin.struktur.form')->with([
+            'title' => 'Tambah Struktur Organisasi',
         ]);
     }
 
@@ -43,13 +43,12 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'judul' => 'required',
+            'tahun' => 'required',
             'gambar' => 'required|image',
-            'deskripsi' => 'required'
         ]);
-        $validatedData['gambar'] = $request->file('gambar')->store('gambar-galeri');
-        Galeri::create($validatedData);
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil ditambahkan');
+        $validatedData['gambar'] = $request->file('gambar')->store('gambar-struktur');
+        Struktur::create($validatedData);
+        return redirect('admin/struktur-organisasi')->with('status', 'Struktur berhasil ditambahkan');
     }
 
     /**
@@ -60,7 +59,10 @@ class GaleriController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('admin.struktur.show')->with([
+            'title' => 'Detail Struktur Organisasi',
+            'struktur' => Struktur::find($id)
+        ]);
     }
 
     /**
@@ -71,9 +73,9 @@ class GaleriController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.galeri.form')->with([
-            'title' => 'Tambah Galeri Sekolah',
-            'galeri' => Galeri::find($id)
+        return view('admin.struktur.form')->with([
+            'title' => 'Edit Struktur Organisasi',
+            'struktur' => Struktur::find($id)
         ]);
     }
 
@@ -86,22 +88,21 @@ class GaleriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $galeri = Galeri::find($id);
+        $struktur = Struktur::find($id);
         $rules = [
-            'judul' => 'required',
+            'tahun' => 'required',
             'gambar' => 'image|max:2000',
-            'deskripsi' => 'required'
         ];
 
         $validatedData = $request->validate($rules);
 
         if(request()->file('gambar')){
-            Storage::disk('public')->delete('gambar-galeri/'.$galeri->gambar);
-            $validatedData['gambar'] = $request->file('gambar')->store('gambar-galeri');
+            Storage::disk('public')->delete('gambar-struktur/'.$struktur->gambar);
+            $validatedData['gambar'] = $request->file('gambar')->store('gambar-struktur');
         }
 
-        $galeri->update($validatedData);
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil diupdate');
+        $struktur->update($validatedData);
+        return redirect('admin/struktur-organisasi')->with('status', 'Struktur berhasil diupdate');
     }
 
     /**
@@ -112,10 +113,10 @@ class GaleriController extends Controller
      */
     public function destroy($id)
     {
-        $galeri = Galeri::find($id);
-        Storage::disk('public')->delete('gambar-galeri/'.$galeri->gambar);
-        $galeri->delete();
+        $struktur = Struktur::find($id);
+        Storage::disk('public')->delete('gambar-struktur/'.$struktur->gambar);
+        $struktur->delete();
 
-        return redirect('admin/galeri')->with('status', 'Galeri berhasil dihapus');
+        return redirect('admin/struktur-organisasi')->with('status', 'Struktur berhasil dihapus');
     }
 }

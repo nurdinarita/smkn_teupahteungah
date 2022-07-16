@@ -9,14 +9,7 @@
     <div class="row">
       <div class="col-md-7 mt-4">
         <h4 class="bg-secondary text-center text-white p-1">Sambutan Kepala Sekolah</h4>
-      </div>
-      <div class="col-1"></div>
-      <div class="col-md-3 mt-4">
-        <h4 class="bg-secondary text-center text-white p-1">Video Profil Sekolah</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
+
         <p>
           Perkembangan teknologi informasi sangat pesat. Perkembangan tersebut didukung oleh semakin banyaknya pengguna internet. 
         </p>
@@ -28,7 +21,9 @@
         </p>
       </div>
       <div class="col-1"></div>
-      <div class="col-md-4">
+      <div class="col-md-3 mt-4">
+        <h4 class="bg-secondary text-center text-white p-1">Video Profil Sekolah</h4>
+
         <iframe width="312" height="210" src="https://www.youtube.com/embed/i8n1gSw_o_8"></iframe>
       </div>
     </div>
@@ -38,42 +33,37 @@
     <div class="row">
       <div class="col-md-7 mt-4">
         <h4 class="bg-secondary text-center text-white p-1">Berita Terbaru</h4>
-      </div>
-      <div class="col-1"></div>
-      <div class="col-md-3 mt-4">
-        <h4 class="bg-secondary text-center text-white p-1">Terakhir diupdate</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
-        @foreach ($berita as $berita)
+        @foreach ($berita as $brt)
         <div class="card mb-3" style="max-width: 100%;">
           <div class="row g-0">
             <div class="col-md-4">
-              <img src="{{ asset('storage/'.$berita->gambar) }}" class="img-fluid rounded-start" alt="...">
+              <img src="{{ asset('storage/'.$brt->gambar) }}" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{{ $berita->judul }}</h5>
-                <p class="card-text">{{ substr(strip_tags($berita->body),0, 100) }}... <a href="{{ url('berita/'.$berita->slug) }}" class="text-decoration-none">Selengkapnya</a></p>
-                <p class="card-text"><small class="text-muted">{{ $berita->created_at->format('d/M/Y') }}</small></p>
+                <h5 class="card-title">{{ $brt->judul }}</h5>
+                <p class="card-text">{{ substr(strip_tags($brt->body),0, 100) }}... <a href="{{ url('berita/'.$brt->slug) }}" class="text-decoration-none">Selengkapnya</a></p>
+                <p class="card-text"><small class="text-muted">{{ $brt->created_at->format('d/M/Y') }}</small></p>
               </div>
             </div>
           </div>
         </div>
         @endforeach
+        {{ $berita->links() }}
       </div>
-      
       <div class="col-1"></div>
-      <div class="col-md-3">
-        @foreach ($recentberita as $recent)
-        <div class="card" >
-          {{-- <img src="..." class="card-img-top" alt="..."> --}}
-          <div class="card-body">
-            <h6 class="card-title"><a href="{{ url('berita/'.$recent->slug) }}" class="text-decoration-none text-dark">{{ $recent->judul }}</a></h6>
+      <div class="col-md-3 mt-4">
+        <h4 class="bg-secondary text-center text-white p-1">Terakhir diupdate</h4>
+
+          @foreach ($recentberita as $recent)
+          <div class="card" >
+            {{-- <img src="..." class="card-img-top" alt="..."> --}}
+            <div class="card-body">
+              <h6 class="card-title"><a href="{{ url('berita/'.$recent->slug) }}" class="text-decoration-none text-dark">{{ $recent->judul }}</a></h6>
+            </div>
           </div>
-        </div>
-        @endforeach
+          @endforeach
+
       </div>
     </div>
 </section>
@@ -81,10 +71,6 @@
     <div class="row">
       <div class="col-md-7 mt-4">
         <h4 class="bg-secondary text-center text-white p-1">Kegiatan Sekolah</h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
