@@ -72,7 +72,7 @@ class GaleriController extends Controller
     public function edit($id)
     {
         return view('admin.galeri.form')->with([
-            'title' => 'Tambah Galeri Sekolah',
+            'title' => 'Edit Galeri Sekolah',
             'galeri' => Galeri::find($id)
         ]);
     }

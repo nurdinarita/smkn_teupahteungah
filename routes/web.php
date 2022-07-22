@@ -9,6 +9,10 @@ use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\Admin\GaleriController;
 use App\Http\Controllers\Admin\StrukturController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\FasilitasController;
+use App\Http\Controllers\Admin\GuruController;
+use App\Http\Controllers\Admin\AlumniController;
+use App\Http\Controllers\Admin\PendaftaranController;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 /*
@@ -28,6 +32,10 @@ Route::get('/profil', [PagesController::class, 'profil']);
 Route::get('/galeri', [PagesController::class, 'galeri']);
 Route::get('/berita', [PagesController::class, 'berita']);
 Route::get('/berita/{slug}', [PagesController::class, 'beritaSingle']);
+Route::get('/fasilitas', [PagesController::class, 'fasilitas']);
+Route::get('/dewan-guru', [PagesController::class, 'guru']);
+Route::get('/alumni', [PagesController::class, 'alumni']);
+Route::get('/pendaftaran', [PagesController::class, 'pendaftaran']);
 
 Auth::routes();
 
@@ -43,4 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/admin/galeri', GaleriController::class);
     Route::resource('/admin/struktur-organisasi', StrukturController::class);
     Route::resource('/admin/slider', SliderController::class);
+    Route::resource('/admin/fasilitas', FasilitasController::class);
+    Route::resource('/admin/guru', GuruController::class);
+    Route::resource('/admin/alumni', AlumniController::class);
+    Route::resource('/admin/pendaftaran', PendaftaranController::class);
 });

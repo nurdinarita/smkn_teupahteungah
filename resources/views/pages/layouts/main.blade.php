@@ -25,7 +25,7 @@
           <img src="{{ asset('assets/img/logo.png') }}" style="width:80px;">
         </div>
         <div class="col-md-4 p-3">
-          <h2>SMKN TEUPAH TENGAH</h2>
+          <h2>SMKN 1 TEUPAH TENGAH</h2>
           <p class="text-muted">TENGKU DIUJUNG KM. 11 NO. 56 SINABANG - LASIKIN, KEC. TEUPAH TENGAH</p>
         </div>
         <div class="col-md-3"></div>
@@ -36,18 +36,41 @@
       </div>
     </div>
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+      <div class="container">
         {{-- <a class="navbar-brand" href="#">Navbar</a> --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse ms-5" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-link {{ Request::is('/') ? 'active' : '' }} px-3" aria-current="page" href="{{ url('/') }}">Beranda</a>
-            <a class="nav-link {{ Request::is('profil') ? 'active' : '' }} px-3" href="{{ url('/profil') }}">Profil</a>
-            <a class="nav-link {{ Request::is('galeri') ? 'active' : '' }} px-3" href="{{ url('/galeri') }}">Galeri</a>
-            <a class="nav-link {{  Request::is('berita') ? 'active' : '' }} px-3" href="{{ url('/berita') }}">Berita</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('/') ? 'active' : '' }} px-3" aria-current="page" href="{{ url('/') }}">Beranda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('profil') ? 'active' : '' }} px-3" href="{{ url('/profil') }}">Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ Request::is('galeri') ? 'active' : '' }} px-3" href="{{ url('/galeri') }}">Galeri</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{  Request::is('berita') ? 'active' : '' }} px-3" href="{{ url('/berita') }}">Berita</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{  Request::is('fasilitas') ? 'active' : '' }} px-3" href="{{ url('/fasilitas') }}">Fasilitas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{  Request::is('dewan-guru') ? 'active' : '' }} px-3" href="{{ url('/dewan-guru') }}">Dewan Guru</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{  Request::is('alumni') ? 'active' : '' }} px-3" href="{{ url('/alumni') }}">Alumni</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{  Request::is('pendaftaran') ? 'active' : '' }} px-3" href="{{ url('/pendaftaran') }}">Pendaftaran</a>
+            </li>
+          </ul>
+          <div class="d-flex nav-item">
+            <a class="nav-link me-2" href="{{ url('/login') }}" style="color: rgb(207, 207, 207);">Login</a>
           </div>
         </div>
       </div>

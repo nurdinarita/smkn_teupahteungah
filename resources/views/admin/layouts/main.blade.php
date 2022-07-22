@@ -106,6 +106,30 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/guru') }}" class="nav-link {{ Request::is('admin/guru') || $title == 'Tambah Data Guru' || $title == 'Edit Data Guru' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-users"></i>
+              <p>
+                Data Guru
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/fasilitas') }}" class="nav-link {{ Request::is('admin/fasilitas') || $title == 'Tambah Fasilitas' || $title == 'Edit Fasilitas' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-building"></i>
+              <p>
+                Fasilitas Sekolah
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/alumni') }}" class="nav-link {{ Request::is('admin/alumni') || $title == 'Tambah Data Alumni' || $title == 'Edit Data Alumni' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-graduate"></i>
+              <p>
+                Alumni
+              </p>
+            </a>
+          </li>
 
           <li class="nav-header">Berita Dan Galeri</li>
           <li class="nav-item">
@@ -127,6 +151,15 @@
 
           <li class="nav-header">Advance</li>
           <li class="nav-item">
+            <a href="{{ url('admin/pendaftaran') }}" class="nav-link {{ Request::is('admin/pendaftaran') || $title === 'Edit Pendaftaran' || $title === 'Tambah Pendaftaran' ? 'active' : '' }}">
+              {{-- <i class="nav-icon far fa-calendar-alt"></i> --}}
+              <i class="nav-icon fas fa-clipboard"></i>
+              <p>
+                Pendaftaran
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ url('admin/slider') }}" class="nav-link {{ Request::is('admin/slider') || $title === 'Edit Gambar Slider' || $title === 'Tambah Gambar Slider' ? 'active' : '' }}">
               {{-- <i class="nav-icon far fa-calendar-alt"></i> --}}
               <i class="nav-icon fas fa-photo-video"></i>
@@ -135,7 +168,6 @@
               </p>
             </a>
           </li>
-          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

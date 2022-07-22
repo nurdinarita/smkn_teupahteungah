@@ -10,6 +10,10 @@ use App\Models\Berita;
 use App\Models\Galeri;
 use App\Models\Struktur;
 use App\Models\Slider;
+use App\Models\Fasilitas;
+use App\Models\Guru;
+use App\Models\Alumni;
+use App\Models\Pendaftaran;
 
 class PagesController extends Controller
 {
@@ -56,6 +60,38 @@ class PagesController extends Controller
     {
         return view('pages.beritaSingle')->with([
             'berita' => Berita::where('slug', $slug)->first()
+        ]);
+    }
+
+    // Fasilitas
+    public function fasilitas()
+    {
+        return view('pages.fasilitas')->with([
+            'fasilitas' => Fasilitas::all()
+        ]);
+    }
+
+    // Guru
+    public function guru()
+    {
+        return view('pages.guru')->with([
+            'guru' => Guru::all()
+        ]);
+    }
+
+    // Alumni
+    public function alumni()
+    {
+        return view('pages.alumni')->with([
+            'alumni' => Alumni::all()
+        ]);
+    }
+
+    // Pendaftaran
+    public function pendaftaran()
+    {
+        return view('pages.pendaftaran')->with([
+            'pendaftaran' => Pendaftaran::all()->first()
         ]);
     }
 
