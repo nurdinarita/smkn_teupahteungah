@@ -70,7 +70,7 @@ class AlumniController extends Controller
     public function edit($id)
     {
         return view('admin.alumni.form')->with([
-            'title' => 'Edit Data alumni',
+            'title' => 'Edit Data Alumni',
             'alumni' => Alumni::find($id)
         ]);
     }
