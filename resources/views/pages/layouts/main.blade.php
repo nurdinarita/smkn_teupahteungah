@@ -3,6 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="{{ url('favicon.ico') }}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
