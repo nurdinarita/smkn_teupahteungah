@@ -12,6 +12,7 @@
                         <tr>
                         <th class="col-1">No</th>
                         <th>Nama Fasilitas</th>
+                        <th>Gambar</th>
                         <th>Luas</th>
                         <th>Kondisi</th>
                         </tr>
@@ -21,6 +22,7 @@
                         <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $fasilitas->nama }}</td>
+                        <td><img src="{{ asset('storage/'.$fasilitas->gambar) }}" width="400px" height="400px"></td>
                         <td>{{ $fasilitas->luas }} m<sup>2<sup></td>
                         <td>{{ $fasilitas->kondisi }}</td>
                         @endforeach
@@ -29,6 +31,7 @@
                         <tr>
                         <th>No</th>
                         <th>Nama Fasilitas</th>
+                        <th>Gambar</th>
                         <th>Luas</th>
                         <th>Kondisi</th>
                         </tr>

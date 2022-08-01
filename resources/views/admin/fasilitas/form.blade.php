@@ -21,6 +21,14 @@
               <input type="text" class="form-control" name="nama" id="nama" value="{{ isset($fasilitas) ? $fasilitas->nama : old('nama') }}" required>
             </div>
             <div class="mb-1">
+            <label for="gambar">Gambar</label>
+              @if(isset($fasilitas))
+                <br>
+                <img src="{{ asset('storage/'.$fasilitas->gambar) }}" alt="" class="img-thumbnail" width="200px">
+              @endif
+              <input type="file" class="form-control" name="gambar" id="gambar" {{ isset($fasilitas) ? '' : 'required' }}>
+            </div>
+            <div class="mb-1">
               <label for="luas">Luas</label>
               <input type="text" class="form-control" name="luas" id="luas" value="{{ isset($fasilitas) ? $fasilitas->luas : old('luas') }}" required>
             </div>

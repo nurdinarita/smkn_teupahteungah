@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Fasilitas;
+use Illuminate\Support\Facades\Storage;
 
 class FasilitasController extends Controller
 {
@@ -43,10 +44,12 @@ class FasilitasController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
+            'gambar' => 'required|image',
             'luas' => 'required|numeric',
             'kondisi' => 'required'
         ]);
 
+        $validatedData['gambar'] = $request->file('gambar')->store('gambar-fasilitas');
         Fasilitas::create($validatedData);
         return redirect('admin/fasilitas')->with('status', 'Fasilitas berhasil ditambahkan');
     }
@@ -85,13 +88,22 @@ class FasilitasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $fasilitas = Fasilitas::find($id);
+        $rules = [
             'nama' => 'required',
+            'gambar' => 'image',
             'luas' => 'required|numeric',
             'kondisi' => 'required'
-        ]);
+        ];
 
-        Fasilitas::find($id)->update($validatedData);
+        $validatedData = $request->validate($rules);
+
+        if(request()->file('gambar')){
+            Storage::disk('public')->delete('gambar-fasilitas/'.$fasilitas->gambar);
+            $validatedData['gambar'] = $request->file('gambar')->store('gambar-fasilitas');
+        }
+
+        $fasilitas->update($validatedData);
         return redirect('admin/fasilitas')->with('status', 'Fasilitas berhasil diupdate');
     }
 
