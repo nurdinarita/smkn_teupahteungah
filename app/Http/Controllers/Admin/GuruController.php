@@ -44,6 +44,7 @@ class GuruController extends Controller
         $validatedData = $request->validate([
             'nip' => 'required|numeric',
             'nama' => 'required',
+            'jabatan' => 'required',
             'mata_pelajaran' => 'required'
         ]);
 
@@ -88,6 +89,7 @@ class GuruController extends Controller
         $validatedData = $request->validate([
             'nip' => 'required|numeric',
             'nama' => 'required',
+            'jabatan' => 'required',
             'mata_pelajaran' => 'required'
         ]);
 

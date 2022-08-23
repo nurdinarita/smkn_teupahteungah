@@ -17,6 +17,7 @@ class CreateGuruTable extends Migration
             $table->id();
             $table->string('nip');
             $table->string('nama');
+            $table->string('jabatan');
             $table->string('mata_pelajaran');
             $table->timestamps();
         });

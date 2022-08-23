@@ -22,6 +22,7 @@
                       <td>{{ $loop->iteration }}</td>
                       <td>{{ $guru->nip }}</td>
                       <td>{{ $guru->nama }}</td>
+                      <td>{{ $guru->jabatan }}</td>
                       <td>{{ $guru->mata_pelajaran }}</td>
                     </tr>
                     @endforeach

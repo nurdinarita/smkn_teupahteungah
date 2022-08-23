@@ -14,6 +14,7 @@
           <th class="col-1">No</th>
           <th>NIP</th>
           <th>Nama Guru</th>
+          <th>Jabatan Guru</th>
           <th>Mata Pelajaran</th>
           <th class="col-2">Aksi</th>
         </tr>
@@ -24,6 +25,7 @@
           <td>{{ $loop->iteration }}</td>
           <td>{{ $guru->nip }}</td>
           <td>{{ $guru->nama }}</td>
+          <td>{{ $guru->jabatan }}</td>
           <td>{{ $guru->mata_pelajaran }}</td>
           <td class="text-center">
             <a href="{{ url('admin/guru/'.$guru->id.'/edit') }}" class="btn btn-warning">
@@ -41,6 +43,7 @@
           <th>No</th>
           <th>NIP</th>
           <th>Nama Guru</th>
+          <th>Jabatan Guru</th>
           <th>Mata Pelajaran</th>
           <th>Aksi</th>
         </tr>
